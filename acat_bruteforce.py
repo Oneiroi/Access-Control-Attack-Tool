@@ -65,6 +65,7 @@ def BruteForceAttack(codeInput):
 def BruteforcePassword():
 	found = 0
 	ser.timeout = bruteforce_timeout
+	codes       = range(0, 000000)
 	commonCodes = ["123456",
 	"654321","000000",
 	"111111","222222",
@@ -75,11 +76,14 @@ def BruteforcePassword():
 		if BruteForceAttack(i):
 			found = 1
 			break
+		#attempted code invalide, remove from remaining set
+		codes.pop(int(i))
 	if found == 1:
 		return
 	print "[!] Not a common code. Brute forcing now..."
 	print ""
-	for i in range(000000, 999999):
+    
+	for i in codes:
 		if BruteForceAttack(i):
 			found = 1
 			break
